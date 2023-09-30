@@ -23,6 +23,9 @@
   <!-- Sweet Alert -->
   <script src="<?php echo $URL; ?>/public/js/sweet_alert.js"></script>
 
+   <!-- jQuery -->
+ <script src="<?php echo $URL;?>/public/templates/plugins/jquery/jquery.min.js"></script>
+ 
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -152,7 +155,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo $URL; ?>/roles/" class="nav-link">
+                <a href="<?php echo $URL; ?>/categorias/" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Listado de Categorías</p>
                 </a>
