@@ -74,16 +74,17 @@ include '../app/controllers/categorias/listado_de_categorias.php';
                                                                 <div class="modal-body">
                                                                     <div class="row">
                                                                         <div class="col-md-12">
-                                                                            <div class="form-group">
+                                                                            <div class="form-group" style="text-align: start;">
                                                                                 <label for="nombre_categoria">Nombre de la Categoría</label>
                                                                                 <input type="text" id="nombre_categoria<?php echo $categoria_dato['id_categoria']; ?>" class="form-control" value="<?php echo $categoria_dato['nombre_categoria']; ?>">
+                                                                                <small style="color: red; display: none;" id="lbl_update<?php echo $categoria_dato['id_categoria'];?>">* Este campo es obligatorio</small>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer justify-content-between">
                                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                                                    <button type="button" id="btn_update<?php echo $categoria_dato['id_categoria'];?>" class="btn btn-success">Guardar</button>
+                                                                    <button type="button" id="btn_update<?php echo $categoria_dato['id_categoria']; ?>" class="btn btn-success">Guardar</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -94,16 +95,23 @@ include '../app/controllers/categorias/listado_de_categorias.php';
                                                             // alert("<?php echo $categoria_dato['id_categoria']; ?>")
 
                                                             var nombre_categoria = $("#nombre_categoria<?php echo $categoria_dato['id_categoria']; ?>").val();
-                                                            var id_categoria = '<?php echo $categoria_dato['id_categoria']; ?>';
-                                                            var url = "../app/controllers/categorias/update_de_categorias.php";
+                                                            if (nombre_categoria == '') {
+                                                                $("#nombre_categoria<?php echo $categoria_dato['id_categoria'];?>").focus();
+                                                                $("#lbl_update<?php echo $categoria_dato['id_categoria'];?>").css('display', 'block');
+                                                            } else {
+                                                                var id_categoria = '<?php echo $categoria_dato['id_categoria']; ?>';
+                                                                var url = "../app/controllers/categorias/update_de_categorias.php";
 
-                                                            $.post(url, {nombre_categoria: nombre_categoria,id_categoria:id_categoria},function(data, textStatus, jqXHR) {
-                                                                    $("#respuesta_update<?php echo $categoria_dato['id_categoria'];?>").html(data);
-                                                                },
-                                                            );
+                                                                $.post(url, {
+                                                                    nombre_categoria: nombre_categoria,
+                                                                    id_categoria: id_categoria
+                                                                }, function(data, textStatus, jqXHR) {
+                                                                    $("#respuesta_update<?php echo $categoria_dato['id_categoria']; ?>").html(data);
+                                                                }, );
+                                                            }
                                                         });
                                                     </script>
-                                                    <div id="respuesta_update<?php echo $categoria_dato['id_categoria'];?>"></div>
+                                                    <div id="respuesta_update<?php echo $categoria_dato['id_categoria']; ?>"></div>
 
                                                 </div>
                                             </td>
@@ -209,8 +217,9 @@ include '../layout/parte2.php';
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="nombre_categoria">Nombre de la Categoría</label>
+                            <label for="nombre_categoria">Nombre de la Categoría *</label>
                             <input type="text" id="nombre_categoria" class="form-control">
+                            <small style="color: red; display: none;" id="lbl_create">* Este campo es obligatorio</small>
                         </div>
                     </div>
                 </div>
@@ -228,14 +237,18 @@ include '../layout/parte2.php';
         // alert("gaurdado");
         var nombre_categoria = $("#nombre_categoria").val();
 
-        var url = "../app/controllers/categorias/registro_de_categorias.php";
-        $.post(url, {
-                nombre_categoria: nombre_categoria
-            },
-            function(data, textStatus, jqXHR) {
-                $("#respuesta").html(data);
-            },
-        );
+        if (nombre_categoria == '') {
+            $('#nombre_categoria').focus();
+            $('#lbl_create').css('display', 'block');
+        } else {
+            var url = "../app/controllers/categorias/registro_de_categorias.php";
+            $.post(url, {
+                    nombre_categoria: nombre_categoria
+                },
+                function(data, textStatus, jqXHR) {
+                    $("#respuesta").html(data);
+                });
+        }
     });
 </script>
 <div id="respuesta"></div>

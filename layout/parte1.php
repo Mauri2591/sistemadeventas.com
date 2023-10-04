@@ -167,7 +167,7 @@
             <a href="#" class="nav-link active">
             <i class="nav-icon fa fa-shopping-cart"></i>              
             <p>
-                Productos
+                Almacén
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -179,7 +179,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo $URL; ?>/almacen/" class="nav-link">
+                <a href="<?php echo $URL; ?>/almacen/create.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Creación de Productos</p>
                 </a>
