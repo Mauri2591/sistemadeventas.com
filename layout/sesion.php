@@ -11,6 +11,7 @@ if (isset($_SESSION['sesion_email']) || isset($_SESSION['nombres'])) {
   $query->execute();
   $usuarios=$query->fetchAll(PDO::FETCH_ASSOC);
   foreach ($usuarios as $key => $usuario) {
+    $id_usuario_sesion=$usuario['id_usuario'];
     $nombres_sesion=$usuario['nombres'];
     $rol_sesion=$usuario['rol'];
   }

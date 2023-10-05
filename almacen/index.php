@@ -65,7 +65,7 @@ include '../app/controllers/almacen/listado_de_productos.php';
                                             <td><?php echo $producto_dato['codigo']; ?></td>
                                             <td><?php echo $producto_dato['categoria']; ?></td>
                                             <td>
-                                                <img src="<?php echo $producto_dato['imagen']; ?>" width="100" height="100" alt="Coca-Cola">
+                                                <img src="<?php echo $URL.'/almacen/img_productos/'.$producto_dato['imagen']; ?>" width="50" height="50" alt="Coca-Cola">
                                             </td>
                                             <td><?php echo $producto_dato['nombre']; ?></td>
                                             <td><?php echo $producto_dato['descripcion']; ?></td>
